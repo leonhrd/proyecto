@@ -1,5 +1,5 @@
 package sample;
-
+//hola amigos de youtube
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +18,7 @@ public class Main extends Application {
     private Menu menCompetencia1, menCompetencia2;
     private MenuItem mitLoteria, mitParseador;
     private VBox vBox;
+    private VBox leo;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -41,7 +42,7 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(vBox, 300, 275));
         primaryStage.show();
-        primaryStage.setMaximized(true);
+        primaryStage.setMaximized(false);
     }
 
     private void Eventos(int i) {
