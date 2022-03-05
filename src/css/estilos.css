@@ -1,0 +1,8 @@
+.root{
+        -fx-background-image: url("src/sample/images/image.png");
+        -fx-background-size: auto;
+        -fx-background-repeat:stretch;
+        -fx-background-position: 1920 1080;
+        -fx-background-position: center;
+
+}

@@ -1,5 +1,6 @@
 package sample.views;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -14,7 +16,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 //el extends stage es porque va a ser una ventana
-public class Parseador  extends Stage {
+public class Parseador extends Stage implements EventHandler<KeyEvent> {
     private VBox vBox;
     private ToolBar tlbMenu;
     private TextArea txtEntrada, txtSalida;
@@ -25,44 +27,52 @@ public class Parseador  extends Stage {
     private ImageView imvAbrir;
 
 
-    public Parseador(){
+    public Parseador() {
         CrearUI();
         this.setTitle("traductor de código morse");
         this.setScene(escena);
         this.show();
     }
 
-    private void CrearUI(){
-        vBox=new VBox();
-        tlbMenu=new ToolBar();
-        imgAbrir =new Image("sample/images/iconoAbrir.png");
-        imvAbrir=new ImageView(imgAbrir);
+    private void CrearUI() {
+        vBox = new VBox();
+        tlbMenu = new ToolBar();
+        imgAbrir = new Image("sample/images/iconoAbrir.png");
+        imvAbrir = new ImageView(imgAbrir);
         imvAbrir.setFitHeight(25);
         imvAbrir.setFitWidth(25);
-        btnAbrir=new Button();
+        btnAbrir = new Button();
         btnAbrir.setGraphic(imvAbrir);
         btnAbrir.setOnAction(event -> {
 
-            flcArchivo=new FileChooser();
+            flcArchivo = new FileChooser();
             flcArchivo.setTitle("Buscar Archivo");
-            File archivo=flcArchivo.showOpenDialog(this);
+            File archivo = flcArchivo.showOpenDialog(this);
 
 
         });
         tlbMenu.getItems().addAll(btnAbrir);
 
-        txtEntrada=new TextArea();
+        txtEntrada = new TextArea();
         txtEntrada.setPromptText("Introduce el texto a traducir");
-        txtSalida=new TextArea();
+        txtEntrada.setOnKeyPressed(this);
+
+
+        txtSalida = new TextArea();
         txtSalida.setEditable(false);
 
         vBox.setSpacing(5);
         vBox.setPadding(new Insets(5));
-        vBox.getChildren().addAll(tlbMenu, txtEntrada,txtSalida);
+        vBox.getChildren().addAll(tlbMenu, txtEntrada, txtSalida);
 
-        escena=new Scene(vBox, 500,300);
+        escena = new Scene(vBox, 500, 300);
 
 
     }
 
+    @Override
+    public void handle(KeyEvent event) {
+
+        System.out.println(event.getCode().toString());
+    }
 }
