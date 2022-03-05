@@ -18,7 +18,7 @@ public class Main extends Application {
     private Menu menCompetencia1, menCompetencia2;
     private MenuItem mitLoteria, mitParseador;
     private VBox vBox;
-    private VBox leo;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
